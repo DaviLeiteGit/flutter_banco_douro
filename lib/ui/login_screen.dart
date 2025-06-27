@@ -6,34 +6,57 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(32),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            const Text(
-              "Sistema de Gestão de Contas",
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 32, color: Color(0xFFFFA002)),
+      body: Stack(
+        children: [
+          Image.asset("assets/images/banner.png"),
+          Align(
+            alignment: Alignment.bottomLeft,
+            child: Image.asset("assets/images/stars.png"),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(32),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                SizedBox(height: 128),
+                Image.asset("assets/images/logo.png", width: 120),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    SizedBox(height: 32),
+                    const Text(
+                      "Sistema de Gestão de Contas",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 32),
+                    ),
+                    TextFormField(
+                      decoration: const InputDecoration(label: Text("E-mail")),
+                    ),
+                    TextFormField(
+                      obscureText: true,
+                      decoration: const InputDecoration(label: Text("Senha")),
+                    ),
+                    SizedBox(height: 32),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.pushReplacementNamed(context, "home");
+                      },
+                      style: ButtonStyle(
+                        backgroundColor: WidgetStatePropertyAll(
+                          Color(0xFFFFA002),
+                        ),
+                      ),
+                      child: Text(
+                        "Entrar",
+                        style: TextStyle(color: Colors.black),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
-            TextFormField(
-              decoration: const InputDecoration(label: Text("E-mail")),
-            ),
-            TextFormField(
-              obscureText: true,
-              decoration: const InputDecoration(label: Text("Senha")),
-            ),
-            SizedBox(height: 32),
-            ElevatedButton(
-              onPressed: () {},
-              style: ButtonStyle(
-                backgroundColor: WidgetStatePropertyAll(Color(0xFFFFA002)),
-              ),
-              child: Text("Entrar", style: TextStyle(color: Colors.black)),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
