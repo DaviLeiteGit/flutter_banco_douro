@@ -10,7 +10,7 @@ class AccountService {
   final StreamController<String> _streamController = StreamController<String>();
   Stream<String> get streamInfos => _streamController.stream;
 
-  String url = "https://api.github.com/gists/c8511bc8450f1308b00d8be1a3ba2db3";
+  String url = "https://api.github.com/gists/5af19a4edc632ff9e7a2701fccb1276b";
 
   Future<List<Account>> getAll() async {
     Response response = await get(
@@ -18,10 +18,10 @@ class AccountService {
       headers: {"Authorization": "Bearer $githubApiKey"},
     );
     _streamController.add("${DateTime.now()} | Requisição de leitura.");
-
     Map<String, dynamic> mapResponse = json.decode(response.body);
-    List<dynamic> listDynamic =
-        json.decode(mapResponse["files"]["accounts.json"]["content"]);
+    List<dynamic> listDynamic = json.decode(
+      mapResponse["files"]["gistfile1.txt"]["content"],
+    );
 
     List<Account> listAccounts = [];
 
@@ -30,7 +30,6 @@ class AccountService {
       Account account = Account.fromMap(mapAccount);
       listAccounts.add(account);
     }
-
     return listAccounts;
   }
 
@@ -56,19 +55,19 @@ class AccountService {
         "description": "account.json",
         "public": true,
         "files": {
-          "accounts.json": {
-            "content": content,
-          }
-        }
+          "accounts.json": {"content": content},
+        },
       }),
     );
 
     if (response.statusCode.toString()[0] == "2") {
       _streamController.add(
-          "${DateTime.now()} | Requisição adição bem sucedida ($accountName).");
+        "${DateTime.now()} | Requisição adição bem sucedida ($accountName).",
+      );
     } else {
-      _streamController
-          .add("${DateTime.now()} | Requisição falhou ($accountName).");
+      _streamController.add(
+        "${DateTime.now()} | Requisição falhou ($accountName).",
+      );
     }
   }
 }
