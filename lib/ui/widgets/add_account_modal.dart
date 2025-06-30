@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_banco_douro/ui/styles/colors.dart';
 
 class AddAccountModal extends StatelessWidget {
   const AddAccountModal({super.key});
@@ -24,6 +25,35 @@ class AddAccountModal extends StatelessWidget {
           const Text(
             "Preencha os dados abaixo:",
             style: TextStyle(fontWeight: FontWeight.w400, fontSize: 14),
+          ),
+          TextFormField(),
+          TextFormField(),
+          SizedBox(height: 32),
+          Row(
+            children: [
+              Expanded(
+                child: ElevatedButton(
+                  onPressed: () {},
+                  child: Text(
+                    "Cancelar",
+                    style: TextStyle(color: Colors.black),
+                  ),
+                ),
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: ElevatedButton(
+                  onPressed: () {},
+                  style: const ButtonStyle(
+                    backgroundColor: WidgetStatePropertyAll(AppColors.orange),
+                  ),
+                  child: Text(
+                    "Adicionar",
+                    style: TextStyle(color: Colors.black),
+                  ),
+                ),
+              ),
+            ],
           ),
         ],
       ),
