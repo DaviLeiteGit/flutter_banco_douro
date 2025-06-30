@@ -20,7 +20,7 @@ class AccountService {
     _streamController.add("${DateTime.now()} | Requisição de leitura.");
     Map<String, dynamic> mapResponse = json.decode(response.body);
     List<dynamic> listDynamic = json.decode(
-      mapResponse["files"]["gistfile1.txt"]["content"],
+      mapResponse["files"]["gistfile1.json"]["content"],
     );
 
     List<Account> listAccounts = [];
